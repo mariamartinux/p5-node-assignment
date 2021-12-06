@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/mariamartinux/p5-node-assignment#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "socket.io": "^4.4.0"
   }
 }
