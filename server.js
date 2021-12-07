@@ -4,7 +4,7 @@ let express = require("express"); //loading expr library ina variable
 
 let app = express(); //activated
 
-let port = 3000;
+let port = process.env.PORT || 3000;
 
 let server = app.listen(port); //connection will happen on port 3000
 
