@@ -1,9 +1,18 @@
 let clientSocket = io();
 
-let color;
+let myColor;
 
 clientSocket.on("connect", newConnection);
 clientSocket.on("mouseBroadcast", newBroadcast);
+
+function setup() {
+  createCanvas(windowWidth, windowHeight);
+  background(220);
+
+  // btn = createButton("Save Birthday Card");
+  // btn.position(width / 2 - 40, (height / 20) * 17.5);
+  // btn.mousePressed(saveToFile);
+}
 
 function newConnection() {
   console.log(clientSocket.id);
@@ -11,62 +20,41 @@ function newConnection() {
 
 function newBroadcast(data) {
   console.log(data);
+  noStroke();
   fill("red");
-  circle(data.x, data.y, 10);
-}
-
-function setup() {
-  createCanvas(windowWidth, windowHeight);
-  background(220);
+  circle(data.x, data.y, 5);
 }
 
 function draw() {
-  fill("blue");
-  //circle(mouseX, mouseY, 20);
-
-  if (mouseIsPressed) {
-    stroke(color);
-    strokeWeight(5);
-    line(mouseX, mouseY, pmouseX, pmouseY);
-
-    let message = {
-      x: mouseX,
-      y: mouseY,
-      pmx: pmouseX,
-      pmy: pmouseY,
-      color: color,
-    };
-  }
+  // noStroke();
+  // fill("blue");
+  // circle(mouseX, mouseY, 5);
 }
 
-push();
-
-noStroke();
-fill(255, 155, 66);
-rect((3 * width) / 16, height / 8, height / 8, height / 8);
-
-fill(247, 160, 114);
-rect((3 * width) / 16, height / 4, height / 8, height / 8);
-
-fill(237, 222, 164);
-rect((3 * width) / 16, (3 * height) / 8, height / 8, height / 8);
-
-fill(217, 229, 214);
-rect((3 * width) / 16, height / 2, height / 8, height / 8);
-
-fill(15, 163, 177);
-rect((3 * width) / 16, (5 * height) / 8, height / 8, height / 8);
-
-fill(82, 63, 56);
-rect((3 * width) / 16, (3 * height) / 4, height / 8, height / 8);
-
-pop();
-
-function mouseMoved() {
+function mouseDragged() {
+  push();
+  // noStroke();
+  // fill("red");
+  // ellipse(mouseX, mouseY, 5);
+  stroke("red");
+  strokeWeight(5);
+  line(mouseX, mouseY, pmouseX, pmouseY);
+  pop();
+  //crea messaggio
   let message = {
     x: mouseX,
     y: mouseY,
+    color: "red",
   };
-
-  clientSocket.emit("mouse", message);
+  //send to the server
+  socket.emit("mouse", message);
 }
+
+// function mouseMoved() {
+//   let message = {
+//     x: mouseX,
+//     y: mouseY,
+//   };
+
+//   clientSocket.emit("mouse", message);
+// }
