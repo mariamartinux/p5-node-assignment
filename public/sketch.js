@@ -46,6 +46,13 @@ function mouseDragged() {
     y: mouseY,
     color: "red",
   };
+
+  push();
+  btn = createButton("Save Birthday Card");
+  btn.position(width / 2 - 40, (height / 20) * 17.5);
+  btn.mousePressed(saveToFile);
+  pop();
+
   //send to the server
   socket.emit("mouse", message);
 }
