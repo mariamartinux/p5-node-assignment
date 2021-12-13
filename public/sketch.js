@@ -19,10 +19,15 @@ function newConnection() {
 }
 
 function newBroadcast(data) {
-  console.log(data);
-  noStroke();
-  fill("red");
-  circle(data.x, data.y, 5);
+  // console.log(data);
+  // noStroke();
+  // fill("red");
+  // circle(data.x, data.y, 5);
+  push();
+  stroke("red");
+  strokeWeight(5);
+  line(mouseX, mouseY, pmouseX, pmouseY);
+  pop();
 }
 
 function draw() {
@@ -47,14 +52,14 @@ function mouseDragged() {
     color: "red",
   };
 
-  push();
-  btn = createButton("Save Birthday Card");
-  btn.position(width / 2 - 40, (height / 20) * 17.5);
-  btn.mousePressed(saveToFile);
-  pop();
+  // push();
+  // btn = createButton("Save Birthday Card");
+  // btn.position(width / 2 - 40, (height / 20) * 17.5);
+  // btn.mousePressed(saveToFile);
+  // pop();
 
   //send to the server
-  socket.emit("mouse", message);
+  clientSocket.emit("mouse", message);
 }
 
 // function mouseMoved() {
