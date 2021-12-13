@@ -26,14 +26,15 @@ function newBroadcast(data) {
   push();
   stroke("red");
   strokeWeight(5);
-  line(mouseX, mouseY, pmouseX, pmouseY);
+  //line(mouseX, mouseY, pmouseX, pmouseY);
+  line(data.x, data.y, data.pmouseX, data.pmouseY);
   pop();
 }
 
 function draw() {
-  noStroke();
-  fill("blue");
-  circle(mouseX, mouseY, 5);
+  // noStroke();
+  // fill("blue");
+  // circle(mouseX, mouseY, 5);
 }
 
 function mouseDragged() {
