@@ -27,7 +27,7 @@ function newBroadcast(data) {
   stroke("red");
   strokeWeight(5);
   //line(mouseX, mouseY, pmouseX, pmouseY);
-  line(data.x, data.y, data.pmouseX, data.pmouseY);
+  line(data.x, data.y, data.pmx, data.pmy);
   pop();
 }
 
@@ -50,6 +50,8 @@ function mouseDragged() {
   let message = {
     x: mouseX,
     y: mouseY,
+    pmx: pmouseX,
+    pmy: pmouseY,
     color: "red",
   };
 
