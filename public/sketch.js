@@ -26,7 +26,7 @@ function newBroadcast(data) {
   push();
   stroke("red");
   strokeWeight(5);
-  //line(mouseX, mouseY, pmouseX, pmouseY);
+
   line(data.x, data.y, data.pmx, data.pmy);
   pop();
 }
@@ -39,9 +39,7 @@ function draw() {
 
 function mouseDragged() {
   push();
-  // noStroke();
-  // fill("red");
-  // ellipse(mouseX, mouseY, 5);
+
   stroke("red");
   strokeWeight(5);
   line(mouseX, mouseY, pmouseX, pmouseY);
