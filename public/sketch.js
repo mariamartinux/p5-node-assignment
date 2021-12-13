@@ -31,9 +31,9 @@ function newBroadcast(data) {
 }
 
 function draw() {
-  // noStroke();
-  // fill("blue");
-  // circle(mouseX, mouseY, 5);
+  noStroke();
+  fill("blue");
+  circle(mouseX, mouseY, 5);
 }
 
 function mouseDragged() {
