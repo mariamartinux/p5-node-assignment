@@ -1,73 +1,70 @@
 let clientSocket = io();
 
-let myColor;
+let card; //image of the card
 
 clientSocket.on("connect", newConnection);
 clientSocket.on("mouseBroadcast", newBroadcast);
 
+function preload() {
+  card = loadImage("/assets/birdday.png");
+}
+
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  background(220);
+  background("#e8fdfa");
 
-  // btn = createButton("Save Birthday Card");
-  // btn.position(width / 2 - 40, (height / 20) * 17.5);
-  // btn.mousePressed(saveToFile);
+  const card_width = width;
+  imageMode(CENTER);
+  image(
+    card,
+    width / 2,
+    height / 2,
+    card_width / 1.2,
+    (card.height * card_width) / card.width / 1.2
+  );
 }
 
 function newConnection() {
   console.log(clientSocket.id);
 }
 
+// what will happen when someone else connects to the website
 function newBroadcast(data) {
-  // console.log(data);
-  // noStroke();
-  // fill("red");
-  // circle(data.x, data.y, 5);
   push();
-  stroke("red");
+  stroke("magenta");
   strokeWeight(5);
-
   line(data.x, data.y, data.pmx, data.pmy);
   pop();
 }
 
 function draw() {
-  // noStroke();
-  // fill("blue");
-  // circle(mouseX, mouseY, 5);
+  // create the button to save the card
+  btn = createButton("Save Card and send it to your friend!");
+  btn.position(width / 2.3, (height / 20) * 17.5);
+  btn.mousePressed(saveToFile);
+}
+
+function saveToFile() {
+  // save the canvas to file as png
+  saveCanvas("Happy BirdDay", "png");
 }
 
 function mouseDragged() {
   push();
-
-  stroke("red");
+  stroke("magenta");
   strokeWeight(5);
   line(mouseX, mouseY, pmouseX, pmouseY);
   pop();
-  //crea messaggio
+
+  //create message
   let message = {
     x: mouseX,
     y: mouseY,
     pmx: pmouseX,
     pmy: pmouseY,
-    color: "red",
+    color: "magenta",
   };
-
-  // push();
-  // btn = createButton("Save Birthday Card");
-  // btn.position(width / 2 - 40, (height / 20) * 17.5);
-  // btn.mousePressed(saveToFile);
-  // pop();
 
   //send to the server
   clientSocket.emit("mouse", message);
 }
-
-// function mouseMoved() {
-//   let message = {
-//     x: mouseX,
-//     y: mouseY,
-//   };
-
-//   clientSocket.emit("mouse", message);
-// }
